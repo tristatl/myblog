@@ -1,0 +1,229 @@
+---
+title: "Markdown 基本用法总结"
+layout: post
+date: 2017-09-08 23:07
+image: /assets/images/markdown.jpg
+headerImage: false
+tag:
+- markdown
+- elements
+star: true
+category: blog
+author: TangLi
+description: Markdown 基本用法总结
+---
+
+## 总结:
+
+可以直接查看下列项目如何在markdown中应用。
+
+### 元素
+- [基本格式](#基本格式)
+- [标题](#标题)
+- [列表](#标题)
+- [段落修改](#段落修改)
+- [链接](#连接)
+- [分割线](#分割线)
+- [图片](#图片)
+- [代码](#代码)
+
+---
+
+## 基本格式
+
+*斜体内容*
+_斜体内容_
+**粗体内容**
+__粗体内容__
+
+{% highlight raw %}
+
+*斜体内容*
+_斜体内容_
+**粗体内容**
+__粗体内容__
+
+{% endhighlight %}
+
+---
+
+## 标题
+
+
+# 一级标题
+
+## 二级标题
+
+### 三级标题
+
+#### 四级标题
+
+{% highlight raw %}
+
+# 一级标题
+## 二级标题
+### 三级标题
+#### 四级标题
+
+{% endhighlight %}
+
+---
+
+## 列表
+
+### 有序列表
+
+1. 苹果
+2. 橘子
+3. 香蕉
+
+{% highlight raw %}
+
+1. 苹果
+2. 橘子
+3. 香蕉
+
+{% endhighlight %}
+
+### 无序列表
+
+* c++
+* java
+* python
+* 其他语言
+
+{% highlight raw %}
+
+* c++
+* java
+* python
+* 其他语言
+
+{% endhighlight %}
+
+---
+
+## 段落修改
+
+### 引用
+> 这是一个引用。
+
+{% highlight raw %}
+
+> 这样使用引用。
+
+{% endhighlight raw %}
+
+---
+
+## 链接
+
+链接的几种方式：
+
+* [链接][1].
+* [链接](http://markitdown.net/)
+* <http://markitdown.net/>.
+
+{% highlight raw %}
+
+* [链接][1]
+* [链接](http://markitdown.net/)
+* <http://markitdown.net/>.
+
+{% endhighlight %}
+
+---
+
+## 分隔线
+
+{% highlight raw %}
+---
+{% endhighlight %}
+
+---
+
+## 图片
+
+{% highlight raw %}
+
+![图片][图片的url]
+
+{% endhighlight %}
+
+![Markdowm Image][2]
+
+*图片说明*?
+
+{% highlight raw %}
+
+![Markdowm Image][图片的url]
+<figcaption class="caption">Photo</figcaption>
+
+{% endhighlight %}
+
+![Markdowm Image][2]
+<figcaption class="caption">Photo</figcaption>
+
+*放大的图片*?
+
+{% highlight raw %}
+![图片][图片的url]{: class="bigger-image" }
+{% endhighlight %}
+
+![Markdowm Image][2]{: class="bigger-image" }
+
+---
+
+## 代码
+
+HTML :
+
+{% highlight html %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Just a test</h1>
+</body>
+</html>
+{% endhighlight %}
+
+CSS :
+
+{% highlight css %}
+pre {
+    padding: 10px;
+    font-size: .8em;
+    white-space: pre;
+}
+
+pre, table {
+    width: 100%;
+}
+
+code, pre, tt {
+    font-family: Monaco, Consolas, Inconsolata, monospace, sans-serif;
+    background: rgba(0,0,0,.05);
+}
+{% endhighlight %}
+
+JS :
+
+{% highlight js %}
+// Sticky Header
+$(window).scroll(function() {
+
+    if ($(window).scrollTop() > 900 && !$("body").hasClass('show-menu')) {
+        $('#hamburguer__open').fadeOut('fast');
+    } else if (!$("body").hasClass('show-menu')) {
+        $('#hamburguer__open').fadeIn('fast');
+    }
+
+});
+{% endhighlight %}
+
+[1]: http://www.markitdown.net/
+[2]: http://kune.fr/wp-content/uploads/2013/10/ghost-blog.jpg
