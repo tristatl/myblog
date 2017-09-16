@@ -13,7 +13,12 @@ author: TangLi
 description: About Harry Potter and Philosopher's stone
 ---
 
-## summary:
+## summary (in short):
+
+Harry Potter, the boy who lived and whose parents were killed by Voldemort, a bad wizard, was left to live with his aunt, Mrs Dursleys. When he was eleven years old, he got the chance to learn spells in Hogwarts. During his time in Hogwarts, he made friends, had various classes and had lots of great and exciting time. What' more, he got to know the secret about philosopher's stone and Voldemort, and eventually prevented the Voldemort getting this stone and saved all the people with his bravery and hard working.
+
+
+## conclusions:
 
 These days I have finished the first book of Harry Potter series. 
 
