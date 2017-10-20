@@ -1,0 +1,151 @@
+---
+title: "CODECHEF.Chef and a great voluntary Program"
+layout: post
+date: 2017-10-20 14:31
+image: 
+headerImage: false
+tag:
+- CODECHEF
+- Editorial
+star: true
+category: blog
+author: TangLi
+description: Editorial CODECHEF
+---
+
+## Problem: Chef and a great voluntary Program
+description:
+> You're given two integers x,y and a string s containing only characters a and b. Find one possible way to reorder the characters in s so that the number of characters * we need to add to ensure there's no substring of x+1 consecutive a-s or y+1 consecutive b-s is the smallest possible.   
+> 给你两个数x,y和一个字符串s只包含a和b。找到一种可能重新排列字符串s使得添加尽可能少的*字符，保证重排列的字符串中没有连续x+1个a且没有连续y+1个b的子串。
+
+link: <https://www.codechef.com/OCT17/problems/CHEFGP>
+
+explanation:
+
+可知最后输出的结果只与原串中a的个数和b的个数有关。
+假设a的个数为sa,b的个数为sb.
+
+当 sa > sb 时，
+
+将b插入连续的a中，由于最多只能有连续x个a,则在固定的第i * x (i = 1,2,3)个a之前要放一个b将下一个连续a的子串隔开。
+
+若b的数量不够，此时必须插入*，且此时插入的*一定是最少的。
+
+若在必须插入b的地方放完b之后还有剩下的b，则从最前main开始，除了固定位置的a，每个a之前插入一个b，直到left为0.
+
+当 sb > sa 时，同理。
+
+
+
+
+
+
+
+
+![Image](/assets/images/exp.png)
+   
+mycodes:
+
+{% highlight C++ %}
+ 
+/*
+name : tangli
+time : 2017/10/19
+problem : codechef 2017 oct challenge Chef and a great voluntary Program
+*/
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <string>
+#include <algorithm>
+#include <cmath>
+#include <map>
+using namespace std;
+
+const int N = 1e5 + 5;
+char s[N],ans[10*N];
+
+int main()
+{
+    int T;
+    scanf("%d",&T);
+    while(T--)
+    {
+        int x,y;
+
+        scanf("%s%d%d",s,&x,&y);
+        //cout <<s<<endl;
+
+        int a = 0, b = 0;
+        for(int i = 0; i < strlen(s); i++)
+        {
+            if(s[i] == 'a') a++;
+            else if(s[i] == 'b') b++;
+        }
+        int sa,sb,left = 0,add = 0; //left 剩下的b的个数，add 需要添加的*的个数
+        if(a > b)
+        {
+            sa = a/x +((a%x)==0?0:1);
+            sb = sa - 1;  //需要插入的固定位置的b的个数
+
+            if(b >= sb)
+                left = b - sb; //b有剩
+            else
+                add = sb - b;  //需要补*字符
+
+            for(int i = 0; i < a; i++) //a的个数
+            {
+                if(i%x == 0 && i)  //固定位置
+                {
+                    if(add > 0)  //如果需要补*字符
+                    {
+                        putchar('*');
+                        add--;
+                    }
+                    else
+                        putchar('b'); //插入b字符
+                }
+                else if(left > 0)  //b字符有剩
+                {
+                    putchar('b');
+                    left--;
+                }
+                putchar('a');
+            }
+        }
+        else
+        {
+            sb = b/y +((b%y)==0?0:1);
+            sa = sb - 1;
+
+            if(a >= sa)
+                left = a - sa;
+            else
+                add = sa - a;
+
+            for(int i = 0; i < b; i++)
+            {
+                if(i%y == 0 && i)
+                {
+                    if(add > 0)
+                    {
+                        putchar('*');
+                        add--;
+                    }
+                    else
+                        putchar('a');
+                }
+                else if(left > 0)
+                {
+                    putchar('a');
+                    left--;
+                }
+                putchar('b');
+            }
+        }
+        printf("\n");
+    }
+    return 0;
+}
+
+{% endhighlight %}

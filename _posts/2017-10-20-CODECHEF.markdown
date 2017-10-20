@@ -1,5 +1,5 @@
 ---
-title: "CODECHEF October Challenge 2017 Editorial"
+title: "CODECHEF.Counter Test For CHEFSUM"
 layout: post
 date: 2017-10-20 12:42
 image: 
