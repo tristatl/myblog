@@ -1,0 +1,115 @@
+---
+title: "CODECHEF October Challenge 2017 Editorial"
+layout: post
+date: 2017-10-20 12:42
+image: 
+headerImage: false
+tag:
+- CODECHEF
+- Editorial
+star: true
+category: blog
+author: TangLi
+description: Editorial CODECHEF
+---
+
+## Problem: Counter Test For CHEFSUM
+description:
+> The problem CHEFSUM is as follows: for a given array of size N, find the least number i such that the sum of its first i elements and last N−i+1 elements is the smallest.Find a countertest - an array of size N such that the answer to this problem is incorrect when using 32-bit unsigned integers (working modulo 2<sup>32</sup>).   
+> 给定一个大小为N数组A[]，找到最小的下标i使得数组前i个元素的和prefSum[i]和后N-i+1个元素的和sufSum[i]的总和最小。找到一个反例————N个大小的一组数，使得题目中给出的题解代码对这组输入样例的答案不正确（题目给出的题解代码使用的是32位无符号整数，计算过程可能会溢出而出错）
+
+link: <https://www.codechef.com/OCT17/problems/CHEFCOUN>
+
+explanation:
+
+prefSum[i] + sufSum[i] = A[0]+...A[n-1] + A[i];
+
+所以prefSum[i] + sufSum[i] 的值只取决于数组中A[i]的值.
+
+假设样例数组A中只有两个不同的数，使得在值为 a 处 prefSum[i] + sufSum[i] = 2<sup>32</sup> 此处用题目代码计算会溢出，且溢出后的答案为0 （模2<sup>32</sup>后为0）。在值为 b 处不溢出，假设 b = a-1, 则在 b 处 prefSum[i] + sufSum[i] = 2<sup>32</sup> -1 
+
+则本应该最大的和在 a 处 ，输出a 的下标 i ，变成了在 b 处和最大，输出b的下标。
+
+![Image](/assets/images/exp.jpg)
+假设有n<sub>a</sub>个a,n<sub>b</sub>个b,且n<sub>a</sub>+ n<sub>b</sub> = N
+
+则有
+
+a = b + 1;
+
+sum_A + a = 2<sup>32</sup>
+
+sum_A = a*n<sub>a</sub>+ b*n<sub>b</sub>
+
+2<sup>32</sup> = a*n<sub>a</sub>+ b*n<sub>b</sub> + a 
+
+   = (n<sub>a</sub> + 1)*(b + 1)+ b*n<sub>b</sub> 
+   
+   = (n<sub>a</sub>+ n<sub>b</sub>)*b + n<sub>a</sub> + b + 1
+   
+   = (N + 1)*b + n<sub>a</sub> + 1
+
+则
+
+   b = 2<sup>32</sup> / (N + 1)
+   
+   a = b + 1
+   
+   n<sub>a</sub> + 1 = 2<sup>32</sup> % (N + 1)
+   
+   n<sub>b</sub> = N - n<sub>a</sub>
+   
+mycodes:
+
+{% highlight C++ %}
+ 
+/*
+name : tangli
+time : 2017/10/20
+problem : codechef 2017 Oct challenge Counter Test For CHEFSUM
+*/
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <string>
+#include <algorithm>
+#include <cmath>
+
+using namespace std;
+
+#define ll long long
+
+const ll MAX = 1LL<<32 ;
+
+int main()
+{
+
+    int T;
+    scanf("%d",&T);
+    while(T--)
+    {
+        int n;
+        scanf("%d",&n);
+        ll b = MAX / (n+1);
+        ll na = MAX % (n+1) - 1;
+        ll nb = n - na;
+        ll a = b + 1;
+        //cout << MAX << endl;
+        //cout << b << endl;
+
+        printf("%d",a);
+        for(int i = 0; i < na-1; i++)
+            cout << " " << a;
+        for(int i = 0; i < nb; i++)
+            cout << " " << b;
+        cout << endl;
+
+    }
+    return 0;
+}
+
+{% endhighlight %}
+   
+
+
+
