@@ -1,1 +1,2 @@
-This is my blog.
+This is everything about building my blog.
+
