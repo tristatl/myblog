@@ -38,7 +38,9 @@ enroll('Bob','M',7)
 ```python
 enroll('Adam','M',city = 'Tianjin')
 ```
-1.3.可变参数：传入的参数个数可变参数前面加了一个*号 ( *args )
+1.3.可变参数：传入的参数个数可变
+
+参数前面加了一个*号 ( *args )
 ```python
 def calc(*numbers):
 	pass
