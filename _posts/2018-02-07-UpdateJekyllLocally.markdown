@@ -13,7 +13,6 @@ author: TangLi
 description: 
 ---
 
-## ctrl+r cmd
 
 ## >>cd /d d:\ 进入d盘
 
