@@ -1,0 +1,153 @@
+---
+title: "N个数求和"
+layout: post
+date: 2018-03-01 15:54
+image: /assets/images/markdown.jpg
+headerImage: false
+tag:
+- solution
+- algorithm
+star: true
+category: blog
+author: TangLi
+description: 
+---
+
+## problem:
+
+本题的要求很简单，就是求N个数字的和。麻烦的是，这些数字是以有理数“分子/分母”的形式给出的，你输出的和也必须是有理数的形式。
+
+输入格式：
+
+输入第一行给出一个正整数N（<=100）。随后一行按格式“a1/b1 a2/b2...”给出N个有理数。题目保证所有分子和分母都在长整型范围内。另外，负数的符号一定出现在分子前面。
+
+输出格式：
+
+输出上述数字和的最简形式 —— 即将结果写成“整数部分 分数部分”，其中分数部分写成“分子/分母”，要求分子小于分母，且它们没有公因子。如果结果的整数部分为0，则只输出分数部分。
+
+输入样例1：
+
+5
+
+2/5 4/15 1/30 -2/60 8/3
+
+输出样例1：
+
+3 1/3
+
+输入样例2：
+
+2
+
+4/3 2/3
+
+输出样例2：
+
+2
+
+输入样例3：
+
+3
+
+1/3 -1/6 1/8
+
+输出样例3：
+
+7/24
+
+
+## code:
+
+{% highlight C++ %}
+
+#include <iostream>
+#include <cstdio>
+using namespace std;
+
+const int N = 100000;
+typedef long long ll;
+
+ll GCD(ll a, ll b)  //辗转相除法求最大公约数
+{
+    return b == 0 ? a : GCD(b, a % b);
+}
+ll LCM(ll a, ll b)  //最小公倍数
+{
+    return a*b/GCD(a,b);
+}
+int main()
+{
+    int n;
+    cin >> n;
+    ll x1,y1,x2,y2;
+    char ch;
+    cin >> x1 >> ch >> y1;
+    for(int i = 1; i < n; i++)
+    {
+        cin >> x2 >> ch >> y2;
+        int lcm = LCM(y1,y2);
+        x1 = x1*lcm/y1 + x2*lcm/y2;
+        y1 = lcm;
+    }
+    if(x1)  //分子可能为0
+    {
+        bool flag = 0;
+        ll gcd = GCD(x1,y1);
+        ll k = x1/ y1;
+        x1 = (x1%y1)/gcd;
+        y1 = y1/gcd;
+        if(k)
+        {
+            flag = 1;
+            cout << k;
+        }
+        if(flag) cout << " ";
+        cout << x1 << "/" << y1 << endl;
+    }
+    else
+        cout << 0 << endl;
+    return 0;
+}
+
+
+{% endhighlight %}
+
+
+## ps: 特殊样例：
+
+/*
+
+1
+0/2
+
+
+2
+2/3 3/2
+
+3
+2/3 0/4 3/2
+
+*/
+
+注意特殊样例即可
+
+注意数据范围要使用long long 
+
+## 辗转相除法 又名欧几里得算法（Euclidean algorithm）
+
+这条算法基于一个定理：
+**两个正整数a和b（a>b），它们的最大公约数等于a除以b的余数c和b之间的最大公约数。**
+比如10和25，25除以10商2余5，那么10和25的最大公约数，等同于10和5的最大公约数。
+
+### gcd(a, b) = gcd(b, a mod b)
+
+### 边界  gcd(a, 0) = a
+
+{% highlight C++ %}
+
+ll GCD(ll a, ll b)  //辗转相除法求最大公约数
+{
+    return b == 0 ? a : GCD(b, a % b);
+}
+
+{% endhighlight %}
