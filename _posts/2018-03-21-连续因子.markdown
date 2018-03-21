@@ -62,8 +62,18 @@ description: acm programming math
 
 #include <iostream>
 #include <cstdio>
+#include <algorithm>
 #include <cmath>
+#include <map>
+#include <string>
+#include <vector>
+#include <stack>
+#include <cstring>
+
 using namespace std;
+
+const int N = 1000 + 5;
+typedef long long ll;
 
 int main() {
     int n;
