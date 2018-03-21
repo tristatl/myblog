@@ -33,7 +33,7 @@ description: acm programming math
 
 3
 
-5*6*7
+5 * 6 * 7  （没有空格）
 
 ## 思路：
 
