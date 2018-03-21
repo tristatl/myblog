@@ -60,24 +60,33 @@ using namespace std;
 const int N = 1000 + 5;
 typedef long long ll;
 
-int main() {
+int main()
+{
     int n;
     scanf("%d", &n);
     for(int len = 12; len >= 1; len--)  //枚举长度
-	{
-        for(int st = 2; start <= sqrt(n); st++)  //枚举开始位置，题目要求因子不包括1
-		{
+    {
+        //枚举开始位置，题目要求因子不包括1
+        for(int st = 2; start <= sqrt(n); st++)
+        {
+
             ll ans = 1;
-			bool flag = 1;
-            for(int i = st; i < st + len; i++) 
-			{
+            bool flag = 1;
+
+            for(int i = st; i < st + len; i++)
+            {
                 ans *= i;
-				if(ans > n){flag = 0; break;}
+                if(ans > n)
+                {
+                    flag = 0;
+                    break;
+                }
             }
-            if(flag && n % ans == 0) 
-			{
+            if(flag && n % ans == 0)
+            {
                 printf("%d\n%d", len, start);
-                for(int i = st + 1; i < st + len; i++) {
+                for(int i = st + 1; i < st + len; i++)
+                {
                     printf("*%d", i);
                 }
                 return 0;
