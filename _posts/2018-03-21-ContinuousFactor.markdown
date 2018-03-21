@@ -42,7 +42,7 @@ description: acm programming math
 
 ## 代码：
 
-{% hightlight C++ %}
+{% highlight C++ %}
 
 
 #include <iostream>
@@ -88,7 +88,7 @@ int main() {
     return 0;
 }
 
-{% endhightlight %}
+{% endhighlight %}
 
 
 
